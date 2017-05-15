@@ -14,6 +14,9 @@ public class SongService {
 	@Autowired
 	private SongRepository repo;
 
+	@Autowired
+	private ImportSongsService importSongsService;
+
 	public List<Song> findAll() {
 		return this.repo.findAll();
 	}
@@ -46,5 +49,15 @@ public class SongService {
 	@Transactional
 	public void removeSong(String id) {
 		this.repo.delete(id);
+	}
+
+	@Transactional
+	public void importSongs() {
+		try {
+			List<Song> importedSongs = this.importSongsService.importSongs();
+			this.repo.save(importedSongs);
+		} catch (Exception e) {
+			System.out.println("Error: " + e);
+		}
 	}
 }

@@ -5,7 +5,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import pt.vcardoso.songs.entities.Song;
 import pt.vcardoso.songs.repositories.SongService;
 
 @SpringBootApplication
@@ -24,7 +23,7 @@ public class Application implements CommandLineRunner {
 		System.out.println("Run setup database here");
 
 		// push data here
-		service.createSong(new Song("ola", "artist", "album"));
+		this.service.importSongs();
 	}
 
 }

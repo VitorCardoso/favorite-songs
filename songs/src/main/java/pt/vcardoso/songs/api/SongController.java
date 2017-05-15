@@ -26,7 +26,7 @@ public class SongController {
 
 	@GetMapping("/ping")
 	public String index() {
-		return "Song service REST API: ok";
+		return "Song REST API: OK";
 	}
 
 	@GetMapping("/song")
@@ -35,8 +35,9 @@ public class SongController {
 	}
 
 	@GetMapping("/song/{uuid}")
-	public Song getSong(@PathVariable("uuid") String uuid) {
-		return this.service.findByKey(uuid);
+	public ResponseEntity<Song> getSong(@PathVariable("uuid") String uuid) {
+		Song song = this.service.findByKey(uuid);
+		return new ResponseEntity<Song>(song != null ? HttpStatus.OK : HttpStatus.NO_CONTENT);
 	}
 
 	@PostMapping("/song")
