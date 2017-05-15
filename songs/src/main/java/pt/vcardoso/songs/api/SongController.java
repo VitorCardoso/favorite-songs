@@ -37,7 +37,7 @@ public class SongController {
 	@GetMapping("/song/{uuid}")
 	public ResponseEntity<Song> getSong(@PathVariable("uuid") String uuid) {
 		Song song = this.service.findByKey(uuid);
-		return new ResponseEntity<Song>(song != null ? HttpStatus.OK : HttpStatus.NO_CONTENT);
+		return new ResponseEntity<Song>(song, song != null ? HttpStatus.OK : HttpStatus.NO_CONTENT);
 	}
 
 	@PostMapping("/song")

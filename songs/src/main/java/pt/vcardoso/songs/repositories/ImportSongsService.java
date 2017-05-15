@@ -7,11 +7,14 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import pt.vcardoso.songs.dto.JsonData;
 import pt.vcardoso.songs.entities.Song;
 
+@Repository
 public class ImportSongsService {
 
 	private static final String URL_TO_IMPORT = "http://freemusicarchive.org/recent.json";
