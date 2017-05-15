@@ -33,7 +33,7 @@
 	</properties>
 
 	<build>
-		<finalName>users</finalName>
+		<finalName>songs</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
