@@ -1,0 +1,214 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>pt.vcardoso</groupId>
+	<artifactId>log-tool</artifactId>
+	<packaging>war</packaging>
+	<version>0.1.0-SNAPSHOT</version>
+	<name>Log Tool</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<!-- maven-compiler-plugin -->
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<camel.version>2.16.5</camel.version>
+		<version.wildfly.swarm>1.0.0.Final</version.wildfly.swarm>
+	</properties>
+
+
+	<!-- <repositories> -->
+	<!-- <repository> -->
+	<!-- <id>central</id> -->
+	<!-- <url>http://lx-all-prod-rep-01:8081/nexus/content/groups/public/</url> -->
+	<!-- <snapshots> -->
+	<!-- <enabled>false</enabled> -->
+	<!-- </snapshots> -->
+	<!-- </repository> -->
+	<!-- <repository> -->
+	<!-- <id>snapshots</id> -->
+	<!-- <url>http://lx-all-prod-rep-01:8081/nexus/content/groups/public-snapshots</url> -->
+	<!-- <releases> -->
+	<!-- <enabled>false</enabled> -->
+	<!-- </releases> -->
+	<!-- </repository> -->
+	<!-- </repositories> -->
+
+	<!-- <dependencyManagement> -->
+	<!-- <dependencies> -->
+	<!-- <dependency> -->
+	<!-- <groupId>org.wildfly.swarm</groupId> -->
+	<!-- <artifactId>bom</artifactId> -->
+	<!-- <version>${version.wildfly.swarm}</version> -->
+	<!-- <type>pom</type> -->
+	<!-- </dependency> -->
+	<!-- <dependency> -->
+	<!-- <groupId>org.wildfly.swarm</groupId> -->
+	<!-- <artifactId>jaxrs-weld</artifactId> -->
+	<!-- <version>${version.wildfly.swarm}</version> -->
+	<!-- </dependency> -->
+	<!-- <dependency> -->
+	<!-- <groupId>org.wildfly.swarm</groupId> -->
+	<!-- <artifactId>logging</artifactId> -->
+	<!-- <version>${version.wildfly.swarm}</version> -->
+	<!-- </dependency> -->
+	<!-- </dependencies> -->
+	<!-- </dependencyManagement> -->
+
+	<build>
+		<finalName>log-tool</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.0.0</version>
+				<configuration>
+					<warName>${project.finalName}</warName>
+					<outputDirectory>C:\Work\docker\log-tool</outputDirectory>
+				</configuration>
+			</plugin>
+			<!-- <plugin> -->
+			<!-- <groupId>org.wildfly.swarm</groupId> -->
+			<!-- <artifactId>wildfly-swarm-plugin</artifactId> -->
+			<!-- <version>${version.wildfly.swarm}</version> -->
+			<!-- <executions> -->
+			<!-- <execution> -->
+			<!-- <goals> -->
+			<!-- <goal>package</goal> -->
+			<!-- </goals> -->
+			<!-- </execution> -->
+			<!-- </executions> -->
+			<!-- </plugin> -->
+		</plugins>
+	</build>
+
+	<dependencies>
+
+		<!-- LOG -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.14</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.14</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- http://mvnrepository.com/artifact/com.sun.jersey/jersey-json -->
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-json</artifactId>
+			<version>1.19.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-core</artifactId>
+			<version>${camel.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-core-xml</artifactId>
+			<version>${camel.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-cdi</artifactId>
+			<version>${camel.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-ssh</artifactId>
+			<version>${camel.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.jcraft</groupId>
+			<artifactId>jsch</artifactId>
+			<version>0.1.54</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-jdbc</artifactId>
+			<version>${camel.version}</version>
+			<!-- use the same version as your Camel core version -->
+		</dependency>
+
+		<dependency>
+			<groupId>commons-configuration</groupId>
+			<artifactId>commons-configuration</artifactId>
+			<version>1.10</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.oracle.jdbc</groupId>
+			<artifactId>ojdbc7</artifactId>
+			<version>12.1.0.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>orai18n-mapping</groupId>
+			<artifactId>orai18n-mapping</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.sql</groupId>
+			<artifactId>jdbc-stdext</artifactId>
+			<version>2.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.weld.se</groupId>
+			<artifactId>weld-se</artifactId>
+			<version>2.3.3.Final</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
+		<dependency>
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<version>1.8.3</version>
+		</dependency>
+
+
+		<!-- Java EE 7 dependency -->
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>7.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.json</groupId>
+			<artifactId>javax.json-api</artifactId>
+			<version>1.0</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.glassfish</groupId>
+			<artifactId>javax.json</artifactId>
+			<version>1.0.4</version>
+			<scope>runtime</scope>
+		</dependency>
+
+	</dependencies>
+
+</project>
