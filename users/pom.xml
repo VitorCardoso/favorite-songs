@@ -2,9 +2,9 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>pt.vcardoso</groupId>
-	<artifactId>songs</artifactId>
+	<artifactId>users</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Songs</name>
+	<name>Users</name>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -33,7 +33,7 @@
 	</properties>
 
 	<build>
-		<finalName>songs</finalName>
+		<finalName>users</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
