@@ -1,11 +1,50 @@
 package pt.vcardoso.songs.repositories;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import pt.vcardoso.songs.entities.Song;
 
 @Service
 public class SongService {
 
 	@Autowired
 	private SongRepository repo;
+
+	public List<Song> findAll() {
+		return this.repo.findAll();
+	}
+
+	public Song findByKey(String id) {
+		return this.repo.findOne(id);
+	}
+
+	public List<Song> findSongByTitle(String title) {
+		return this.repo.findByTitle(title);
+	}
+
+	@Transactional
+	public Song createSong(Song song) {
+		return this.repo.save(song);
+	}
+
+	@Transactional
+	public Song updateSong(String id, Song song) {
+		if (id != null) {
+			Song originalSong = this.findByKey(id);
+			originalSong.setAlbum(song.getAlbum());
+			originalSong.setArtist(song.getArtist());
+			originalSong.setTitle(song.getTitle());
+			return this.repo.save(originalSong);
+		}
+		return null;
+	}
+
+	@Transactional
+	public void removeSong(String id) {
+		this.repo.delete(id);
+	}
 }
