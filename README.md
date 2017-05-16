@@ -5,10 +5,10 @@ Webapp - users favourite songs list DEMO
 Java, Maven, Spring Boot, Mongo DB, Docker(docker-compose), AngularJS(v1)
 
 ### StartUp
-###" Required to run:
-Maven
-Docker
-Docker Compose
+#### Required to run:
+- Maven
+- Docker
+- Docker Compose
 #### Auto:
 ```
 sh start.sh
@@ -26,8 +26,8 @@ docker-compose up -d
 docker-compose ps
 ```
 ### URL: 
-- [X] http://[ip-docker-machine]:80/songs
-- [] http://
+- http://[ip-docker-machine]:80/songs
+- http://
 
 ### API REST
 #### Songs:
