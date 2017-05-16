@@ -31,17 +31,15 @@ docker-compose ps
 
 ### API REST
 #### Songs:
-Method | URL | Description
------------- | -------------
-GET | /songs | - Get all songs
-
+```
 GET     /songs              - Get all songs
 GET     /songs/{uuid}       - Get a song
 POST    /songs              - Create a song
 PUT     /songs/{uuid}       - Update a song
 DELETE  /songs/{uuid}       - Remove a song
-
-Users:
+```
+#### Users:
+```
 GET     /users              - Get all users
 GET     /users/{uuid}       - Get a user
 POST    /users              - Create a user
@@ -51,3 +49,4 @@ DELETE  /users/{uuid}       - Remove a user
 GET     /users/{uuid}/songs         - Get all user favorite songs
 POST    /users/{uuid}/songs         - Add a song to user favorite songs list
 DELETE  /users/{uuid}/songs/{id}    - Remove a song from user favorite songs list
+```
