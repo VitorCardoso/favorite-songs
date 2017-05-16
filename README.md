@@ -1,13 +1,13 @@
 # favorite-songs
 Webapp - users favourite songs list DEMO
 
-TECNOLOGIES
+## TECNOLOGIES
 Java, Maven, Spring Boot, Mongo DB, Docker(docker-compose), AngularJS(v1)
 
-StartUp
-Auto:
+## StartUp
+### Auto:
     sh start.sh
-Manual:
+### Manual:
     In root dir:
         mvn clean install front-end
         mvn clean install users
@@ -16,14 +16,14 @@ Manual:
     Check with:
         docker-compose ps
 
-URL: 
+## URL: 
     http://[ip-docker-machine]:80/songs
 Public URL:
     http://....
 
-API REST
+## API REST
 
-Songs:
+### Songs:
 GET     /songs              - Get all songs
 GET     /songs/{uuid}       - Get a song
 POST    /songs              - Create a song
