@@ -1,4 +1,4 @@
-package pt.vcardoso.songs;
+package pt.vcardoso.users;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
