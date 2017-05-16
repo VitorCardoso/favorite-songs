@@ -25,12 +25,13 @@ docker-compose up -d
 ```
 docker-compose ps
 ```
-### URL: 
+### Webapp URL: 
 - http://[ip-docker-machine]:80/songs
-- http://
 
 ### API REST
 #### Songs:
+##### URL
+- http://[ip-docker-machine]:92/api
 ```
 GET     /songs              - Get all songs
 GET     /songs/{uuid}       - Get a song
@@ -39,6 +40,8 @@ PUT     /songs/{uuid}       - Update a song
 DELETE  /songs/{uuid}       - Remove a song
 ```
 #### Users:
+##### URL
+- http://[ip-docker-machine]:91/api
 ```
 GET     /users              - Get all users
 GET     /users/{uuid}       - Get a user

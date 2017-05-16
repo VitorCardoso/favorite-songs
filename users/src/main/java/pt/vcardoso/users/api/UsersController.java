@@ -36,7 +36,7 @@ public class UsersController {
     public ResponseEntity<User> getUser(@PathVariable("uuid") String uuid) {
         User user = this.service.findUserByKey(uuid);
 
-        return new ResponseEntity<User>(user, user != null ? HttpStatus.OK : HttpStatus.NO_CONTENT);
+        return new ResponseEntity<User>(user, user != null ? HttpStatus.OK : HttpStatus.NOT_FOUND);
     }
 
     //Create a user
@@ -50,7 +50,7 @@ public class UsersController {
     public ResponseEntity<User> updateSong(@PathVariable("uuid") String uuid, @RequestBody User song) {
         User updatedUser = this.service.updateUser(uuid, song);
 
-        return new ResponseEntity<User>(updatedUser, updatedUser != null ? HttpStatus.OK : HttpStatus.NO_CONTENT);
+        return new ResponseEntity<User>(updatedUser, updatedUser != null ? HttpStatus.OK : HttpStatus.NOT_FOUND);
     }
 
     //Remove a user
@@ -66,11 +66,11 @@ public class UsersController {
     public ResponseEntity<List<UserFavoriteSong>> getUserSongs(@PathVariable("uuid") String uuid) {
         User user = this.service.findUserByKey(uuid);
         if (user == null) {
-            return new ResponseEntity<List<UserFavoriteSong>>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<List<UserFavoriteSong>>(HttpStatus.NOT_FOUND);
         }
         List<UserFavoriteSong> listSongs = this.service.findUserFavoriteSongByUserId(user.getUuid());
 
-        return new ResponseEntity<List<UserFavoriteSong>>(listSongs, !listSongs.isEmpty() ? HttpStatus.OK : HttpStatus.NO_CONTENT);
+        return new ResponseEntity<List<UserFavoriteSong>>(listSongs, !listSongs.isEmpty() ? HttpStatus.OK : HttpStatus.NOT_FOUND);
     }
 
     // Add a song to user favorite songs list

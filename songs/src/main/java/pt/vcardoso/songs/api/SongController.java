@@ -32,7 +32,7 @@ public class SongController {
 	@GetMapping("/songs/{uuid}")
 	public ResponseEntity<Song> getSong(@PathVariable("uuid") String uuid) {
 		Song song = this.service.findByKey(uuid);
-		return new ResponseEntity<Song>(song, song != null ? HttpStatus.OK : HttpStatus.NO_CONTENT);
+		return new ResponseEntity<Song>(song, song != null ? HttpStatus.OK : HttpStatus.NOT_FOUND);
 	}
 
 	@PostMapping("/songs")
@@ -43,7 +43,7 @@ public class SongController {
 	@PutMapping("/songs/{uuid}")
 	public ResponseEntity<Song> updateSong(@PathVariable("uuid") String uuid, @RequestBody Song song) {
 		Song updatedSong = this.service.updateSong(uuid, song);
-		return new ResponseEntity<Song>(updatedSong, updatedSong != null ? HttpStatus.OK : HttpStatus.NO_CONTENT);
+		return new ResponseEntity<Song>(updatedSong, updatedSong != null ? HttpStatus.OK : HttpStatus.NOT_FOUND);
 	}
 
 	@DeleteMapping("/songs/{uuid}")
