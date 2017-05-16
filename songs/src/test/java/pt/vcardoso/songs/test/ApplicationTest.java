@@ -9,11 +9,11 @@ import pt.vcardoso.songs.entities.Song;
 import pt.vcardoso.songs.repositories.ImportSongsService;
 
 public class ApplicationTest {
-	private ImportSongsService service = new ImportSongsService();
+    private ImportSongsService service = new ImportSongsService();
 
-	@Test
-	public void test() throws Exception {
-		List<Song> importedSongs = service.importSongs();
-		Assert.assertFalse(importedSongs.isEmpty());
-	}
+    @Test
+    public void test() throws Exception {
+        List<Song> importedSongs = service.importSongs();
+        Assert.assertFalse(importedSongs.isEmpty());
+    }
 }

@@ -24,11 +24,6 @@ public class SongController {
 	@Autowired
 	private SongService service;
 
-	@GetMapping("/ping")
-	public String index() {
-		return "Song REST API: OK";
-	}
-
 	@GetMapping("/songs")
 	public List<Song> getSongs() {
 		return this.service.findAll();

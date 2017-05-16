@@ -8,7 +8,7 @@ import pt.vcardoso.songs.entities.Song;
 
 public interface SongRepository extends MongoRepository<Song, String> {
 
-	// get songs by title
-	List<Song> findByTitle(String title);
+    // get songs by title
+    List<Song> findByTitle(String title);
 
 }

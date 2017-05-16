@@ -8,7 +8,7 @@ import pt.vcardoso.users.entities.User;
 
 public interface UserRepository extends MongoRepository<User, String> {
 
-	// get users by name
-	List<User> findByName(String name);
+    // get users by name
+    List<User> findByName(String name);
 
 }

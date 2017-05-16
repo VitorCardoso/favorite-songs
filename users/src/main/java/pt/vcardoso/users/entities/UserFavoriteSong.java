@@ -7,69 +7,69 @@ import org.springframework.data.annotation.Id;
 
 public class UserFavoriteSong implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	private String uuid;
-	
-	private String userId;
-	
-	private String songId;
+    @Id
+    private String uuid;
 
-	public UserFavoriteSong(String userId, String songId) {
-		this.uuid = UUID.randomUUID().toString();
-		this.userId = userId;
-		this.songId = songId;
-	}
+    private String userId;
 
-	public String getUserId() {
-		return userId;
-	}
+    private String songId;
 
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
+    public UserFavoriteSong(String userId, String songId) {
+        this.uuid = UUID.randomUUID().toString();
+        this.userId = userId;
+        this.songId = songId;
+    }
 
-	public String getSongId() {
-		return songId;
-	}
+    public String getUserId() {
+        return userId;
+    }
 
-	public void setSongId(String songId) {
-		this.songId = songId;
-	}
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
-	public String getUuid() {
-		return uuid;
-	}
+    public String getSongId() {
+        return songId;
+    }
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((uuid == null) ? 0 : uuid.hashCode());
-		return result;
-	}
+    public void setSongId(String songId) {
+        this.songId = songId;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		UserFavoriteSong other = (UserFavoriteSong) obj;
-		if (uuid == null) {
-			if (other.uuid != null)
-				return false;
-		} else if (!uuid.equals(other.uuid))
-			return false;
-		return true;
-	}
+    public String getUuid() {
+        return uuid;
+    }
 
-	@Override
-	public String toString() {
-		return "UserFavoriteSong [uuid=" + uuid + ", userId=" + userId + ", songId=" + songId + "]";
-	}
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((uuid == null) ? 0 : uuid.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        UserFavoriteSong other = (UserFavoriteSong) obj;
+        if (uuid == null) {
+            if (other.uuid != null)
+                return false;
+        } else if (!uuid.equals(other.uuid))
+            return false;
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "UserFavoriteSong [uuid=" + uuid + ", userId=" + userId + ", songId=" + songId + "]";
+    }
 
 }

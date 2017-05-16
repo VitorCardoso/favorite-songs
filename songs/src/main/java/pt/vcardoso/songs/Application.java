@@ -10,20 +10,20 @@ import pt.vcardoso.songs.repositories.SongService;
 @SpringBootApplication
 public class Application implements CommandLineRunner {
 
-	@Autowired
-	private SongService service;
+    @Autowired
+    private SongService service;
 
-	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
 
-	@Override
-	public void run(String... args) throws Exception {
+    @Override
+    public void run(String... args) throws Exception {
 
-		System.out.println("Run setup database here");
+        System.out.println("Run setup database here");
 
-		// push data here
-		this.service.importSongs();
-	}
+        // push data here
+        this.service.importSongs();
+    }
 
 }

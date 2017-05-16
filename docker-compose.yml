@@ -1,6 +1,27 @@
-version: "2.0"
+version: '2'
 services:
   users:
+    image: anapsix/alpine-java
+    ports:
+    - "91:9000"
+    volumes:
+    - ./users/target/users.jar:/home/users.jar
+    command: ["java","-jar","/home/users.jar"]
+    depends_on:
+    - mongo
+    - songs
   songs:
-  database:
-  front-end:
+    image: anapsix/alpine-java
+    ports:
+    - "92:9000"
+    volumes:
+    - ./songs/target/songs.jar:/home/songs.jar
+    command: ["java","-jar","/home/songs.jar"]
+    depends_on:
+    - mongo
+  mongo:
+    image: mongo
+    ports:
+    - "9001:27017"
+    #volumes:
+    #- ./mongo_data:/data/db

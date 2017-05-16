@@ -17,38 +17,42 @@ import pt.vcardoso.songs.entities.Song;
 @Repository
 public class ImportSongsService {
 
-	private static final String URL_TO_IMPORT = "http://freemusicarchive.org/recent.json";
+    private static final String URL_TO_IMPORT = "http://freemusicarchive.org/recent.json";
 
-	public List<Song> importSongs() throws Exception {
-		ObjectMapper mapper = new ObjectMapper();
-		JsonData data = mapper.readValue(getHTMLContent(), JsonData.class);
-		System.out.println(data);
-		return to(data);
-	}
+    public List<Song> importSongs() throws Exception {
 
-	private List<Song> to(JsonData data) {
-		List<Song> result = new ArrayList<>();
-		data.getaTracks().forEach(track -> {
-			result.add(new Song(track.getTrack_title(), track.getArtist_name(), track.getAlbum_title()));
-		});
+        ObjectMapper mapper = new ObjectMapper();
+        return from(mapper.readValue(getHTMLContent(), JsonData.class));
+    }
 
-		return result;
-	}
+    private List<Song> from(JsonData data) {
 
-	private static String getHTMLContent() throws Exception {
+        List<Song> result = new ArrayList<>();
+        data.getaTracks().forEach(track -> {
+            result.add(new Song(track.getTrack_title(), track.getArtist_name(), track.getAlbum_title()));
+        });
 
-		StringBuilder result = new StringBuilder();
-		URL url = new URL(URL_TO_IMPORT);
-		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-		conn.setRequestMethod("GET");
-		conn.setRequestProperty("User-Agent",
-				"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_8; en-US) AppleWebKit/532.5 (KHTML, like Gecko) Chrome/4.0.249.0 Safari/532.5");
-		BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-		String line;
-		while ((line = rd.readLine()) != null) {
-			result.append(line);
-		}
-		rd.close();
-		return result.toString();
-	}
+        return result;
+    }
+
+    private static String getHTMLContent() throws Exception {
+
+        StringBuilder result = new StringBuilder();
+
+        URL url = new URL(URL_TO_IMPORT);
+
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("GET");
+        conn.setRequestProperty("User-Agent", "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_8; en-US) AppleWebKit/532.5 (KHTML, like Gecko) Chrome/4.0.249.0 Safari/532.5");
+
+        BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+        String line;
+
+        while ((line = rd.readLine()) != null) {
+            result.append(line);
+        }
+        rd.close();
+
+        return result.toString();
+    }
 }
