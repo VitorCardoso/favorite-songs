@@ -1,0 +1,26 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <div class="panel panel-default">
+                <div class="panel-heading">Add User</div>
+                <div class="panel-body">
+                    <form name="insertUser">
+                        <div class="form-group">
+                            <label for="insertUserName">Nome</label>
+                            <input type="text" class="form-control" ng-model="name" id="insertUserName" placeholder="Enter Name" />
+                        </div>
+                        <div class="form-group">
+                            <label for="insertUserEmail">Email</label>
+                            <input type="email" class="form-control" ng-model="email" id="insertUserEmail" aria-describedby="emailHelp" placeholder="Enter email">
+                        </div>
+
+                        <button class="btn btn-primary" ng-disabled="insertUser.$invalid || !isValid()" ng-click="insert()" type="submit">Add User</button>
+                    </form>
+                   <button type="button" class="btn btn-default" ng-click="goBack()">Go back</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+</div>

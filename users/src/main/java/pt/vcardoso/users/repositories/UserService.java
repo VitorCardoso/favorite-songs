@@ -53,7 +53,7 @@ public class UserService {
     @Transactional
     public void removeUser(String id) {
         this.repo.delete(id);
-        
+
         // deletes the list of favorite songs
         this.userFavRepo.delete(findUserFavoriteSongByUserId(id));
     }

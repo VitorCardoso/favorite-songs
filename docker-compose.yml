@@ -22,15 +22,15 @@ services:
   mongo:
     image: mongo
     ports:
-    - "9001:27017"
+    - "27017"
     #volumes:
     #- ./mongo_data:/data/db
   front-end:
     image: tomcat:8.0
     ports:
     - "80:8080"
-    depends_on:
-    - users
-    - songs
+    #depends_on:
+    #- users
+    #- songs
     volumes:
-    - ./front-end/target/front-end.war:/usr/local/tomee/webapps/songs.war
+    - ./front-end/target/front-end.war:/usr/local/tomcat/webapps/songs.war

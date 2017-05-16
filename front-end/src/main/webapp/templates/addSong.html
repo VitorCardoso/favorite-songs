@@ -1,0 +1,30 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <div class="panel panel-default">
+                <div class="panel-heading">Add Song</div>
+                <div class="panel-body">
+                    <form name="insertSong">
+                        <div class="form-group">
+                            <label for="insertSongTitle">Title</label>
+                            <input type="text" class="form-control" ng-model="tilte" id="insertSongTitle" placeholder="Enter title of the song" />
+                        </div>
+                        <div class="form-group">
+                            <label for="insertSongArtist">Artist</label>
+                            <input type="text" class="form-control" ng-model="artist" id="insertSongArtist" placeholder="Enter artist name" />
+                        </div>
+                        <div class="form-group">
+                            <label for="insertSongAlbum">Album</label>
+                            <input type="text" class="form-control" ng-model="album" id="insertSongAlbum" placeholder="Enter album name" />
+                        </div>
+
+                        <button class="btn btn-primary" ng-disabled="insertSong.$invalid || !isValid()" ng-click="insert()" type="submit">Add Song</button>
+                    </form>
+                    <button type="button" class="btn btn-default" ng-click="goBack()">Go back</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+</div>
