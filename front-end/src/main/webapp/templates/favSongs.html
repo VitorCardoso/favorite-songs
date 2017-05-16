@@ -1,0 +1,41 @@
+<div class="panel panel-default">
+
+    <div class="panel-heading">User</div>
+    <div class="panel-body">
+        {{params.id}}
+    </div>
+
+    <div class="panel-heading">Add a Favorite Song</div>
+    <div class="panel-body">
+        <form name="insertSong">
+            <button class="btn btn-success" ng-disabled="insertSong.$invalid || !isValid()" ng-click="insert()" type="submit">Add</button>
+        </form>
+    </div>
+
+    <div class="panel-heading">Favorite Songs <span class="badge">{{favSongs.length}}</span></div>
+    <div class="panel-body">
+        <div ng-hide="users.length === 0">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Artist</th>
+                            <th>Album</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="active no_selection" ng-repeat="song in favSongs" ng-click="" ng-dblclick="">
+                            <td>{{song.title}}</td>
+                            <td>{{song.artist}}</td>
+                            <td>{{song.album}}</td>
+                            <td><button type="button" class="btn btn-danger btn-xs" ng-click="removeFav(song.uuid)">Delete</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

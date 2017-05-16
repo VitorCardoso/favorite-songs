@@ -1,33 +1,41 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-1"></div>
-        <div class="col-sm-10">
-            <div class="panel panel-default">
-                <div class="panel-heading">Users <span class="badge">{{users.length}}</span></div>
-                <div class="panel-body">
-                    <div ng-hide="users.length === 0">
-                        <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="active pointer no_selection" ng-repeat="user in users" ng-click="" ng-dblclick="viewPatient(patient.id)">
-                                        <td>{{user.name}}</td>
-                                        <td>{{user.email}}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <button type="button" class="btn btn-primary" ng-click="goToAddUser()">Add User</button>
-                    <button type="button" class="btn btn-primary" ng-click="goToSong()">View Songs</button>
-                </div>
+<div class="panel panel-default">
+    <div class="panel-heading">Users <span class="badge">{{users.length}}</span></div>
+    <div class="panel-body">
+        <div ng-hide="users.length === 0">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="active pointer no_selection" ng-repeat="user in users" ng-click="goToFavSongs(user.uuid)" ng-dblclick="goToFavSongs(user.uuid)">
+                            <td>{{user.name}}</td>
+                            <td>{{user.email}}</td>
+                            <td><button type="button" class="btn btn-danger btn-xs" ng-click="removeUser(user.uuid)">Delete</button></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
-        <div class="col-sm-1"></div>
+    </div>
+
+    <div class="panel-heading">Add User</div>
+    <div class="panel-body">
+        <form name="insertUser">
+            <div class="form-group">
+                <label for="insertUserName">Nome</label>
+                <input type="text" class="form-control" ng-model="name" id="insertUserName" placeholder="Enter Name" />
+            </div>
+            <div class="form-group">
+                <label for="insertUserEmail">Email</label>
+                <input type="email" class="form-control" ng-model="email" id="insertUserEmail" aria-describedby="emailHelp" placeholder="Enter email">
+            </div>
+
+            <button class="btn btn-success" ng-disabled="insertUser.$invalid || !isValid()" ng-click="insert()" type="submit">Add</button>
+        </form>
     </div>
 </div>

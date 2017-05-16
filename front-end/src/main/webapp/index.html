@@ -22,7 +22,26 @@
         <br>
         <button class="btn btn-danger btn-xs" ng-click="cancelRequests()">Cancel</button>
     </div>
-    <div ng-view ng-cloak></div>
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10">
+                <button type="button" class="btn btn-primary" ng-click="goToUsers()">Users</button>
+                <button type="button" class="btn btn-primary" ng-click="goToSongs()">Songs</button>
+            </div>
+            <div class="col-sm-1"></div>
+            <br>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10">
+                <div ng-view ng-cloak></div>
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+    </div>
 </body>
 
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
