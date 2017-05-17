@@ -16,8 +16,11 @@ public class User implements Serializable {
 
     private String email;
 
+    public User() {
+        this.uuid = UUID.randomUUID().toString();
+    }
+
     public User(String name, String email) {
-        super();
         this.uuid = UUID.randomUUID().toString();
         this.name = name;
         this.email = email;

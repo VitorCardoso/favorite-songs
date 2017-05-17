@@ -29,9 +29,9 @@ docker-compose ps
 - http://[ip-docker-machine]:80/songs
 
 ### API REST
+#### URL
+- http://[ip-docker-machine]/api
 #### Songs:
-##### URL
-- http://[ip-docker-machine]:92/api
 ```
 GET     /songs              - Get all songs
 GET     /songs/{uuid}       - Get a song
@@ -40,8 +40,6 @@ PUT     /songs/{uuid}       - Update a song
 DELETE  /songs/{uuid}       - Remove a song
 ```
 #### Users:
-##### URL
-- http://[ip-docker-machine]:91/api
 ```
 GET     /users              - Get all users
 GET     /users/{uuid}       - Get a user

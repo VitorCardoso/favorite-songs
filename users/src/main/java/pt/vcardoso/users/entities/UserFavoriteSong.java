@@ -16,6 +16,10 @@ public class UserFavoriteSong implements Serializable {
 
     private String songId;
 
+    public UserFavoriteSong() {
+        this.uuid = UUID.randomUUID().toString();
+    }
+
     public UserFavoriteSong(String userId, String songId) {
         this.uuid = UUID.randomUUID().toString();
         this.userId = userId;
