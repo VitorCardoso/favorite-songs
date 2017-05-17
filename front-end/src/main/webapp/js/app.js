@@ -1,5 +1,5 @@
 (function () {
-    var app = angular.module('songs', ['ngRoute', 'ngSanitize','ui.bootstrap', 'songs-factories']);
+    var app = angular.module('songs', ['ngRoute', 'ngSanitize', 'ui.bootstrap', 'songs-factories']);
 
     app.config(['$httpProvider', function ($httpProvider) {
         $httpProvider.interceptors.push('httpInterceptor');
@@ -155,6 +155,7 @@
         //init var
         $scope.user = {};
         $scope.favSongs = [];
+        $scope.selectedSong = undefined;
 
         // get user info
         $scope.getUserInfo = function () {
@@ -173,6 +174,25 @@
         // remove a fav song
         $scope.removeFav = function (userfavSongId) {
             console.log("remove fav song: " + userfavSongId);
+        };
+
+        // search songs by fields
+        $scope.getSongs = function (keyword) {
+            return $scope.favSongs;
+        };
+
+        // for form validation
+        $scope.isValid = function () {
+            return ($scope.selectedSong && $scope.selectedSong.uuid);
+        };
+
+        $scope.updateFields = function (song) {
+
+        };
+
+        // to insert new song
+        $scope.insert = function () {
+            console.log("Insert Fav Song: " + $scope.selectedSong.uuid + " for user " + $scope.user.name);
         };
 
         $scope.favSongs = [{

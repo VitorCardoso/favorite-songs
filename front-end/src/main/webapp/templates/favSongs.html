@@ -9,8 +9,12 @@
 
     <div class="panel-heading">Add a Favorite Song</div>
     <div class="panel-body">
-        <form name="insertSong">
-            <button class="btn btn-success" ng-disabled="insertSong.$invalid || !isValid()" ng-click="insert()" type="submit">Add</button>
+        <form name="insertFavSong" class "form-inline">
+
+            <input type="text" ng-model="selectedSong" placeholder="Search song here" uib-typeahead="song as song.title for song in getSongs($viewValue)  | limitTo:20 "
+                autocomplete="off" typeahead-editable="false" typeahead-wait-ms="500" class="form-control mb-4 mr-sm-4 mb-sm-2"
+                typeahead-on-select="">
+            <button class="btn btn-success" ng-disabled="insertFavSong.$invalid || !isValid()" ng-click="insert()" type="submit">Add</button>
         </form>
     </div>
 
