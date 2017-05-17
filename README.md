@@ -6,9 +6,9 @@ Java(v8), Maven(v3), Spring Boot(v1.5.2.RELEASE), Mongo DB(v3.4.3), Docker(v17.0
 
 ### StartUp
 #### Required to run:
-- Maven
-- Docker
-- Docker Compose
+- Maven (https://maven.apache.org/install.html)
+- Docker (https://docs.docker.com/engine/installation/)
+- Docker Compose (https://docs.docker.com/compose/install/)
 #### Auto:
 ```
 sh start.sh
