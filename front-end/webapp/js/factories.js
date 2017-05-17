@@ -1,6 +1,8 @@
 (function () {
   var app = angular.module('songs-factories', ['ngResource', 'ngSanitize']);
 
+  var url = window.location;
+
   app.factory('httpInterceptor', ['$q', '$rootScope', function ($q, $rootScope) {
     var numLoadings = 0;
     return {
@@ -71,9 +73,15 @@
   }]);
 
   app.factory("SongsService", ["$resource", '$http', function ($resource, $http) {
-    $http.defaults.useXDomain = true;
-    var url = window.location;
-    return $resource('http://' + url.hostname + ':92/api/songs/:id', {});
+    return $resource('http://' + url.hostname + '/api/songs/:id', {});
+  }]);
+
+  app.factory("UsersService", ["$resource", '$http', function ($resource, $http) {
+    return $resource('http://' + url.hostname + '/api/users/:id', {});
+  }]);
+
+  app.factory("FavSongsService", ["$resource", '$http', function ($resource, $http) {
+    return $resource('http://' + url.hostname + '/api/users/:userId/songs/:songId', {});
   }]);
 
 })();

@@ -35,8 +35,6 @@ services:
     - front-end
     volumes:
     - ./front-end/nginx.conf:/etc/nginx/nginx.conf
-    - ./front-end/webapp:/usr/share/nginx/html
-    #command: bash -c "sudo chmod -R 0755 /usr/share/nginx/html/*"
   front-end:
     image: tomcat:8.0
     #ports:
@@ -45,4 +43,4 @@ services:
     - users
     - songs
     volumes:
-    - ./front-end/target/front-end.war:/usr/local/tomcat/webapps/songs.war
+    - ./front-end/webapp:/usr/local/tomcat/webapps/songs

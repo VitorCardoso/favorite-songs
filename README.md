@@ -2,7 +2,7 @@
 Webapp - users favourite songs list DEMO
 
 ### Tecnologies
-Java, Maven, Spring Boot, Mongo DB, Docker(docker-compose), AngularJS(v1)
+Java(v8), Maven(v3), Spring Boot(v1.5.2.RELEASE), Mongo DB(v3.4.3), Docker(v17.05), Docker-compose(v1.12), AngularJS(v1.5.8)
 
 ### StartUp
 #### Required to run:

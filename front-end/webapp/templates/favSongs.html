@@ -2,19 +2,25 @@
 
     <div class="panel-heading">User</div>
     <div class="panel-body">
-        {{params.id}}
+        <div ng-if="user.name" class="thick">
+            {{user.name}} - {{user.email}}
+        </div>
     </div>
 
     <div class="panel-heading">Add a Favorite Song</div>
     <div class="panel-body">
-        <form name="insertSong">
-            <button class="btn btn-success" ng-disabled="insertSong.$invalid || !isValid()" ng-click="insert()" type="submit">Add</button>
+        <form name="insertFavSong" class="form-inline">
+
+            <input type="text" ng-model="selectedSong" placeholder="Search song here" uib-typeahead="song as song.title for song in getSongs($viewValue)  | limitTo:20 "
+                autocomplete="off" typeahead-editable="false" typeahead-wait-ms="500" class="form-control mb-4 mr-sm-4 mb-sm-4"
+                typeahead-on-select="">
+            <button class="btn btn-success" ng-disabled="insertFavSong.$invalid || !isValid()" ng-click="insert()" type="submit">Add</button>
         </form>
     </div>
 
     <div class="panel-heading">Favorite Songs <span class="badge">{{favSongs.length}}</span></div>
     <div class="panel-body">
-        <div ng-hide="users.length === 0">
+        <div ng-hide="favSongs.length === 0">
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>
@@ -26,7 +32,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="active no_selection" ng-repeat="song in favSongs">
+                        <tr class="active no_selection" ng-repeat="song in favSongs" ng-if="song.title">
                             <td>{{song.title}}</td>
                             <td>{{song.artist}}</td>
                             <td>{{song.album}}</td>
