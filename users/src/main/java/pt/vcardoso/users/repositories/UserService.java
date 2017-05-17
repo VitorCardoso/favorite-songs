@@ -59,15 +59,15 @@ public class UserService {
     }
 
     @Transactional
-    public UserFavoriteSong createUserFavoriteSongByUserId(String userId, UserFavoriteSong userFavoriteSong) {
-        if (userId == null || userFavoriteSong == null) {
-            return null;
-        }
-        User user = this.findUserByKey(userId);
-        if (user == null) {
+    public UserFavoriteSong createUserFavoriteSongByUserId(UserFavoriteSong userFavoriteSong) {
+        if (userFavoriteSong == null) {
             return null;
         }
         if (userFavoriteSong.getSongId() == null || userFavoriteSong.getUserId() == null) {
+            return null;
+        }
+        User user = this.findUserByKey(userFavoriteSong.getUserId());
+        if (user == null) {
             return null;
         }
         return this.userFavRepo.save(userFavoriteSong);
@@ -86,7 +86,13 @@ public class UserService {
         if (user == null) {
             return false;
         }
-        this.userFavRepo.delete(songId);
+        List<UserFavoriteSong> userFavoriteSongs = this.findUserFavoriteSongByUserId(userId);
+        for (UserFavoriteSong userFavoriteSong : userFavoriteSongs) {
+            if (userFavoriteSong.getSongId().equals(songId) && userFavoriteSong.getUserId().equals(userId)) {
+                this.userFavRepo.delete(userFavoriteSong.getUuid());
+            }
+        }
+
         return true;
     }
 

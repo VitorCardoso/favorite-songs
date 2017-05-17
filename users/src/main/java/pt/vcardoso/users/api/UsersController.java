@@ -25,27 +25,26 @@ public class UsersController {
     @Autowired
     private UserService service;
 
-    //Get all users
+    // Get all users
     @GetMapping("/users")
     public List<User> getUsers() {
         return this.service.findAllUsers();
     }
 
-    //Get a user
+    // Get a user
     @GetMapping("/users/{uuid}")
     public ResponseEntity<User> getUser(@PathVariable("uuid") String uuid) {
         User user = this.service.findUserByKey(uuid);
-
         return new ResponseEntity<User>(user, user != null ? HttpStatus.OK : HttpStatus.NOT_FOUND);
     }
 
-    //Create a user
+    // Create a user
     @PostMapping("/users")
     public ResponseEntity<User> createUser(@RequestBody User user) {
         return new ResponseEntity<User>(this.service.createUser(user), HttpStatus.CREATED);
     }
 
-    //Update a user
+    // Update a user
     @PutMapping("/users/{uuid}")
     public ResponseEntity<User> updateSong(@PathVariable("uuid") String uuid, @RequestBody User song) {
         User updatedUser = this.service.updateUser(uuid, song);
@@ -53,11 +52,10 @@ public class UsersController {
         return new ResponseEntity<User>(updatedUser, updatedUser != null ? HttpStatus.OK : HttpStatus.NOT_FOUND);
     }
 
-    //Remove a user
+    // Remove a user
     @DeleteMapping("/users/{uuid}")
     public ResponseEntity<Void> deleteUser(@PathVariable("uuid") String uuid) {
         this.service.removeUser(uuid);
-
         return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
 
@@ -70,21 +68,20 @@ public class UsersController {
         }
         List<UserFavoriteSong> listSongs = this.service.findUserFavoriteSongByUserId(user.getUuid());
 
-        return new ResponseEntity<List<UserFavoriteSong>>(listSongs, !listSongs.isEmpty() ? HttpStatus.OK : HttpStatus.NOT_FOUND);
+        return new ResponseEntity<List<UserFavoriteSong>>(listSongs, HttpStatus.OK);
     }
 
     // Add a song to user favorite songs list
-    @PostMapping("/users/{uuid}/songs")
-    public ResponseEntity<UserFavoriteSong> createUserFavoriteSong(@PathVariable("uuid") String uuid, @RequestBody UserFavoriteSong userFavoriteSong) {
-        UserFavoriteSong createUserFavoriteSongByUserId = this.service.createUserFavoriteSongByUserId(uuid, userFavoriteSong);
-
+    @PostMapping("/users/songs")
+    public ResponseEntity<UserFavoriteSong> createUserFavoriteSong(@RequestBody UserFavoriteSong userFavoriteSong) {
+        UserFavoriteSong createUserFavoriteSongByUserId = this.service.createUserFavoriteSongByUserId(userFavoriteSong);
         return new ResponseEntity<UserFavoriteSong>(createUserFavoriteSongByUserId, createUserFavoriteSongByUserId == null ? HttpStatus.BAD_REQUEST : HttpStatus.CREATED);
     }
 
-    //Remove a song from user favorite songs list
+    // Remove a song from user favorite songs list
     @DeleteMapping("/users/{uuid}/songs/{id}")
-    public ResponseEntity<Void> deleteUserFavoriteSong(@PathVariable("uuid") String uuid, @PathVariable("id") String id) {
-        boolean result = this.service.removeUserFavoriteSongById(uuid, id);
+    public ResponseEntity<Void> deleteUserFavoriteSong(@PathVariable("uuid") String uuid, @PathVariable("id") String songId) {
+        boolean result = this.service.removeUserFavoriteSongById(uuid, songId);
         return new ResponseEntity<Void>(result ? HttpStatus.NO_CONTENT : HttpStatus.BAD_REQUEST);
     }
 

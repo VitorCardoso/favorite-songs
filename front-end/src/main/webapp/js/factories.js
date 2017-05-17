@@ -81,7 +81,7 @@
   }]);
 
   app.factory("FavSongsService", ["$resource", '$http', function ($resource, $http) {
-    return $resource('http://' + url.hostname + '/api/users/:id/songs/:songId', {});
+    return $resource('http://' + url.hostname + '/api/users/:userId/songs/:songId', {});
   }]);
 
 })();

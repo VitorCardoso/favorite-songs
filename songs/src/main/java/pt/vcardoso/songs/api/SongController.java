@@ -21,35 +21,46 @@ import pt.vcardoso.songs.repositories.SongService;
 @RequestMapping("/api")
 public class SongController {
 
-	@Autowired
-	private SongService service;
+    @Autowired
+    private SongService service;
 
-	@GetMapping("/songs")
-	public List<Song> getSongs() {
-		return this.service.findAll();
-	}
+    // get all songs
+    @GetMapping("/songs")
+    public List<Song> getSongs() {
+        return this.service.findAll();
+    }
 
-	@GetMapping("/songs/{uuid}")
-	public ResponseEntity<Song> getSong(@PathVariable("uuid") String uuid) {
-		Song song = this.service.findByKey(uuid);
-		return new ResponseEntity<Song>(song, song != null ? HttpStatus.OK : HttpStatus.NOT_FOUND);
-	}
+    // get a song by id
+    @GetMapping("/songs/{uuid}")
+    public ResponseEntity<Song> getSong(@PathVariable("uuid") String uuid) {
+        Song song = this.service.findByKey(uuid);
+        return new ResponseEntity<Song>(song, song != null ? HttpStatus.OK : HttpStatus.NOT_FOUND);
+    }
 
-	@PostMapping("/songs")
-	public ResponseEntity<Song> createSong(@RequestBody Song song) {
-		return new ResponseEntity<Song>(this.service.createSong(song), HttpStatus.CREATED);
-	}
+    // search a song by all fields
+    @GetMapping("/songs/search/{kw}")
+    public List<Song> searchSong(@PathVariable("kw") String kw) {
+        return this.service.getSongsListByMatch(kw);
+    }
 
-	@PutMapping("/songs/{uuid}")
-	public ResponseEntity<Song> updateSong(@PathVariable("uuid") String uuid, @RequestBody Song song) {
-		Song updatedSong = this.service.updateSong(uuid, song);
-		return new ResponseEntity<Song>(updatedSong, updatedSong != null ? HttpStatus.OK : HttpStatus.NOT_FOUND);
-	}
+    // create a song
+    @PostMapping("/songs")
+    public ResponseEntity<Song> createSong(@RequestBody Song song) {
+        return new ResponseEntity<Song>(this.service.createSong(song), HttpStatus.CREATED);
+    }
 
-	@DeleteMapping("/songs/{uuid}")
-	public ResponseEntity<Void> deleteSong(@PathVariable("uuid") String uuid) {
-		this.service.removeSong(uuid);
-		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
-	}
+    // update a song
+    @PutMapping("/songs/{uuid}")
+    public ResponseEntity<Song> updateSong(@PathVariable("uuid") String uuid, @RequestBody Song song) {
+        Song updatedSong = this.service.updateSong(uuid, song);
+        return new ResponseEntity<Song>(updatedSong, updatedSong != null ? HttpStatus.OK : HttpStatus.NOT_FOUND);
+    }
+
+    // delete a song
+    @DeleteMapping("/songs/{uuid}")
+    public ResponseEntity<Void> deleteSong(@PathVariable("uuid") String uuid) {
+        this.service.removeSong(uuid);
+        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+    }
 
 }

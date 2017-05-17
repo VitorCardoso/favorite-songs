@@ -35,19 +35,19 @@ docker-compose ps
 ```
 GET     /songs              - Get all songs
 GET     /songs/{uuid}       - Get a song
-POST    /songs              - Create a song
+POST    /songs              - Create a song         - {artist:artist, title:title, album:album}
 PUT     /songs/{uuid}       - Update a song
 DELETE  /songs/{uuid}       - Remove a song
 ```
 #### Users:
 ```
 GET     /users              - Get all users
-GET     /users/{uuid}       - Get a user
+GET     /users/{uuid}       - Get a user            - {name:name, email:email}
 POST    /users              - Create a user
 PUT     /users/{uuid}       - Update a user
 DELETE  /users/{uuid}       - Remove a user
 
 GET     /users/{uuid}/songs         - Get all user favorite songs
-POST    /users/{uuid}/songs         - Add a song to user favorite songs list
+POST    /users/songs                - Add a song to user favorite songs list        - {userId:userId, songId:songId}
 DELETE  /users/{uuid}/songs/{id}    - Remove a song from user favorite songs list
 ```

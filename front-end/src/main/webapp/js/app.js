@@ -38,7 +38,7 @@
             UsersService.query({}, function (data) {
                 $scope.users = data;
             }, function (errorData) {
-                console.error(errorData);
+                console.info(errorData);
             });
         };
 
@@ -66,7 +66,7 @@
                 $scope.users.push(data);
                 $scope.cleanData();
             }, function (errorData) {
-                console.error(errorData);
+                console.info(errorData);
             });
         };
 
@@ -78,7 +78,7 @@
             }, function (data) {
                 $scope.query();
             }, function (errorData) {
-                console.error(errorData);
+                console.info(errorData);
             });
         };
 
@@ -103,7 +103,7 @@
             SongsService.query({}, function (data) {
                 $scope.songs = data;
             }, function (errorData) {
-                console.error(errorData);
+                console.info(errorData);
             });
         };
 
@@ -132,7 +132,7 @@
                 $scope.songs.push(data);
                 $scope.cleanData();
             }, function (errorData) {
-                console.error(errorData);
+                console.info(errorData);
             });
         };
 
@@ -144,12 +144,12 @@
             }, function (data) {
                 $scope.query();
             }, function (errorData) {
-                console.error(errorData);
+                console.info(errorData);
             });
         };
     }]);
 
-    app.controller('FavSongController', ['$http', '$scope', '$location', '$routeParams', 'HttpPendingRequestsService', 'UsersService', function ($http, $scope, $location, $routeParams, HttpPendingRequestsService, UsersService) {
+    app.controller('FavSongController', ['$http', '$scope', '$location', '$routeParams', 'HttpPendingRequestsService', 'UsersService', 'SongsService', 'FavSongsService', function ($http, $scope, $location, $routeParams, HttpPendingRequestsService, UsersService, SongsService, FavSongsService) {
         $scope.params = $routeParams;
 
         //init var
@@ -164,21 +164,53 @@
             }, function (data) {
                 $scope.user = data;
             }, function (errorData) {
-                console.error(errorData);
+                console.info(errorData);
+            });
+        };
+
+        // get fav song by user
+        $scope.getFavSongsByUser = function () {
+            $scope.favSongs = [];
+            FavSongsService.query({
+                userId: $scope.params.id
+            }, function (data) {
+                data.forEach(function (userSong) {
+                    SongsService.get({
+                        id: userSong.songId
+                    }, function (song) {
+                        $scope.favSongs.push(song);
+                    }, function (errorData) {
+                        console.info(errorData);
+                    });
+                });
+            }, function (errorData) {
+                console.info(errorData);
             });
         };
 
         // get user
         $scope.getUserInfo();
+        $scope.getFavSongsByUser();
 
         // remove a fav song
         $scope.removeFav = function (userfavSongId) {
             console.log("remove fav song: " + userfavSongId);
+            FavSongsService.delete({
+                userId: $scope.user.uuid,
+                songId: userfavSongId
+            }, function (data) {
+                $scope.getFavSongsByUser();
+            }, function (errorData) {
+                console.info(errorData);
+            });
         };
 
         // search songs by fields
         $scope.getSongs = function (keyword) {
-            return $scope.favSongs;
+            var url = window.location;
+            return $http.get('http://' + url.hostname + '/api/songs/search/' + keyword).then(function (response) {
+                return response.data;
+            });
         };
 
         // for form validation
@@ -186,21 +218,21 @@
             return ($scope.selectedSong && $scope.selectedSong.uuid);
         };
 
-        $scope.updateFields = function (song) {
-
-        };
-
-        // to insert new song
+        // to insert new fav song
         $scope.insert = function () {
-            console.log("Insert Fav Song: " + $scope.selectedSong.uuid + " for user " + $scope.user.name);
+            console.log("Insert Fav Song: " + $scope.selectedSong.title + " for user " + $scope.user.name);
+            var favSong = {
+                userId: $scope.user.uuid,
+                songId: $scope.selectedSong.uuid
+            };
+            FavSongsService.save(favSong, function (data) {
+                $scope.selectedSong = undefined;
+                $scope.getFavSongsByUser();
+            }, function (errorData) {
+                console.info(errorData);
+            });
         };
 
-        $scope.favSongs = [{
-            "uuid": "123",
-            "title": "ola",
-            "artist": "xxxxxxx",
-            "album": "oleole"
-        }];
     }]);
 
 })();

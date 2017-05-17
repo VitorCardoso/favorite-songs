@@ -99,3 +99,7 @@
 .pointer {
     cursor: pointer;
 }
+
+.thick {
+    font-weight: bold;
+}

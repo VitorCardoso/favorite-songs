@@ -1,6 +1,9 @@
 package pt.vcardoso.songs.repositories;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -65,5 +68,35 @@ public class SongService {
         } catch (Exception e) {
             System.out.println("Error: " + e);
         }
+    }
+
+    // find songs for each attribute
+    public List<Song> getSongsListByMatch(String match) {
+
+        if (match == null || match.isEmpty()) {
+            return Collections.emptyList();
+        }
+
+        String[] matchArray = match.trim().toLowerCase().split(" ");
+
+        List<Song> list = new ArrayList<>();
+
+        StringBuilder regex = new StringBuilder();
+        for (String word : matchArray) {
+            regex.append("(?=.*").append(word).append(")");
+        }
+        regex.append(".*");
+
+        Pattern pattern = Pattern.compile(regex.toString());
+
+        this.findAll().forEach(song -> {
+            String album = song.getAlbum().trim().toLowerCase();
+            String artist = song.getArtist().trim().toLowerCase();
+            String title = song.getTitle().trim().toLowerCase();
+            if (pattern.matcher(album).matches() || pattern.matcher(artist).matches() || pattern.matcher(title.toString()).matches()) {
+                list.add(song);
+            }
+        });
+        return list;
     }
 }
