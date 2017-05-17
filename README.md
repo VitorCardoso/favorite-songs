@@ -16,7 +16,6 @@ sh start.sh
 #### Manual:
 ##### In root dir:
 ```
-mvn clean install -f ./front-end/pom.xml
 mvn clean install -f ./users/pom.xml
 mvn clean install -f ./songs/pom.xml
 docker-compose up -d
