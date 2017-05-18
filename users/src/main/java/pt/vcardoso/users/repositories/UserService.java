@@ -90,11 +90,7 @@ public class UserService {
         if (user == null) {
             return false;
         }
-        List<UserFavoriteSong> userFavoriteSongs = this.findUserFavoriteSongByUserIdAndSongId(userId, songId);
-        for (UserFavoriteSong userFavoriteSong : userFavoriteSongs) {
-            this.userFavRepo.delete(userFavoriteSong.getUuid());
-        }
-
+        this.findUserFavoriteSongByUserIdAndSongId(userId, songId).forEach(userFavoriteSong -> this.userFavRepo.delete(userFavoriteSong));
         return true;
     }
 

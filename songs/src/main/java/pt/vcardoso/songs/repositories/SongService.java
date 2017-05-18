@@ -95,6 +95,7 @@ public class SongService {
 
         Pattern pattern = Pattern.compile(regex.toString());
 
+        // improve this
         this.findAll().forEach(song -> {
             String album = song.getAlbum().trim().toLowerCase();
             String artist = song.getArtist().trim().toLowerCase();

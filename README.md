@@ -27,11 +27,12 @@ sh start.sh
 ```
 mvn clean install -f ./users/pom.xml
 mvn clean install -f ./songs/pom.xml
-docker-compose up -d
+docker-compose up -d nginx
 ```
 ##### Check with:
 ```
 docker-compose ps
+docker-compose logs -f
 ```
 ### Webapp URL: 
 - http://[ip-docker-machine]:80/songs
@@ -68,3 +69,4 @@ DELETE  /users/{uuid}/songs/{id}    - Remove a song from user favorite songs lis
 - Code review
 - Optimize api access
 - Cover all Unit tests
+- Sorting mechanisms
