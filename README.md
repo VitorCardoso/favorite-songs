@@ -4,14 +4,14 @@ Webapp - users favourite songs list
 A simple demonstration of a fullstack webapp with this tecnologies runing on top of docker engine.
 
 ### Tecnologies
-Java(v8)
-Maven(v3)
-Spring Boot(v1.5.2.RELEASE)
-Mongo DB(v3.4.3)
-Docker(v17.05)
-Docker-compose(v1.12)
-AngularJS(v1.5.8)
-BootStrap
+- Java(v8)
+- Maven(v3)
+- Spring Boot(v1.5.2.RELEASE)
+- Mongo DB(v3.4.3)
+- Docker(v17.05)
+- Docker-compose(v1.12)
+- AngularJS(v1.5.8)
+- BootStrap
 
 ### StartUp
 #### Required to run:
