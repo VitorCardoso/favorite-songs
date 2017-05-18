@@ -44,6 +44,7 @@ docker-compose ps
 GET     /songs                      - Get all songs
 GET     /songs/find?id=x&id=y       - Get songs by id's
 GET     /songs/{uuid}               - Get a song
+GET     /songs/search/{kw}          - Search a song by any field (artist, title, album)
 POST    /songs                      - Create a song - {artist:artist, title:title, album:album}
 PUT     /songs/{uuid}               - Update a song
 DELETE  /songs/{uuid}               - Remove a song
