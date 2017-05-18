@@ -6,3 +6,4 @@ sh install_jdk_maven.sh
 mvn clean install -f ./users
 mvn clean install -f ./songs
 docker-compose up -d nginx
+docker-compose logs -f

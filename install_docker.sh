@@ -20,8 +20,8 @@ sudo docker-compose --version
 echo "#############################################################"
 echo "Installing extra tools ..."
 echo "#############################################################"
-sudo sudo apt install apache2-utils
-sudo sudo apt install htop
+sudo sudo apt install apache2-utils --yes
+sudo sudo apt install htop --yes
 echo "#############################################################"
 echo "Done"
 echo "#############################################################"
