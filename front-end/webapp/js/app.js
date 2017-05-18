@@ -153,6 +153,7 @@
         $scope.params = $routeParams;
 
         //init var
+        var url = window.location;
         $scope.user = {};
         $scope.favSongs = [];
         $scope.selectedSong = undefined;
@@ -174,15 +175,15 @@
             FavSongsService.query({
                 userId: $scope.params.id
             }, function (data) {
+                var output = '';
                 data.forEach(function (userSong) {
-                    SongsService.get({
-                        id: userSong.songId
-                    }, function (song) {
-                        $scope.favSongs.push(song);
-                    }, function (errorData) {
-                        console.info(errorData);
-                    });
+                    output += 'id=' + userSong.songId + '&';
                 });
+                if (output != '') {
+                    $http.get('http://' + url.hostname + '/api/songs/find?' + output).then(function (response) {
+                        $scope.favSongs = response.data;
+                    });
+                }
             }, function (errorData) {
                 console.info(errorData);
             });
@@ -207,18 +208,8 @@
 
         // search songs by fields
         $scope.getSongs = function (keyword) {
-            var url = window.location;
             return $http.get('http://' + url.hostname + '/api/songs/search/' + keyword).then(function (response) {
-                var data = response.data;
-                data.forEach(function (song, index, obj) {
-                    if ($scope.favSongs.indexOf(song) > -1) {
-                        // console.log(song);
-                        // console.log(index);
-                        // console.log(obj);
-                        data.splice(index, 1);
-                    }
-                });
-                return data;
+                return response.data;
             });
         };
 
@@ -229,6 +220,18 @@
 
         // to insert new fav song
         $scope.insert = function () {
+            var alreadyExists = false;
+            $scope.favSongs.forEach(function (favSong) {
+                if ($scope.selectedSong.uuid == favSong.uuid) {
+                    alreadyExists = true;
+                    return;
+                }
+            });
+            if (alreadyExists) {
+                console.log("Already Exists Fav Song: " + $scope.selectedSong.title + " for user " + $scope.user.name);
+                $scope.selectedSong = undefined;
+                return;
+            }
             console.log("Insert Fav Song: " + $scope.selectedSong.title + " for user " + $scope.user.name);
             var favSong = {
                 userId: $scope.user.uuid,

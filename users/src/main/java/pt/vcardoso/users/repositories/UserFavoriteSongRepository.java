@@ -11,4 +11,7 @@ public interface UserFavoriteSongRepository extends MongoRepository<UserFavorite
     // get fav songs by user
     List<UserFavoriteSong> findByUserId(String userId);
 
+    // get fav songs by user and song
+    List<UserFavoriteSong> findByUserIdAndSongId(String userId, String songId);
+
 }

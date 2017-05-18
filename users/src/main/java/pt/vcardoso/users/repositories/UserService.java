@@ -77,6 +77,10 @@ public class UserService {
         return this.userFavRepo.findByUserId(userId);
     }
 
+    public List<UserFavoriteSong> findUserFavoriteSongByUserIdAndSongId(String userId, String songId) {
+        return this.userFavRepo.findByUserIdAndSongId(userId, songId);
+    }
+
     @Transactional
     public boolean removeUserFavoriteSongById(String userId, String songId) {
         if (userId == null || songId == null) {
@@ -86,11 +90,9 @@ public class UserService {
         if (user == null) {
             return false;
         }
-        List<UserFavoriteSong> userFavoriteSongs = this.findUserFavoriteSongByUserId(userId);
+        List<UserFavoriteSong> userFavoriteSongs = this.findUserFavoriteSongByUserIdAndSongId(userId, songId);
         for (UserFavoriteSong userFavoriteSong : userFavoriteSongs) {
-            if (userFavoriteSong.getSongId().equals(songId) && userFavoriteSong.getUserId().equals(userId)) {
-                this.userFavRepo.delete(userFavoriteSong.getUuid());
-            }
+            this.userFavRepo.delete(userFavoriteSong.getUuid());
         }
 
         return true;

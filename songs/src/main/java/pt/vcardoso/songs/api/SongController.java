@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import pt.vcardoso.songs.entities.Song;
@@ -35,6 +36,12 @@ public class SongController {
     public ResponseEntity<Song> getSong(@PathVariable("uuid") String uuid) {
         Song song = this.service.findByKey(uuid);
         return new ResponseEntity<Song>(song, song != null ? HttpStatus.OK : HttpStatus.NOT_FOUND);
+    }
+
+    // get a song by multiple ids
+    @GetMapping("/songs/find")
+    public List<Song> getSongs(@RequestParam(value = "id") List<String> uuids) {
+        return this.service.findSongByUuids(uuids);
     }
 
     // search a song by all fields
