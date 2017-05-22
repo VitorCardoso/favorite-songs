@@ -97,10 +97,10 @@ public class SongService {
 
         // improve this
         this.findAll().forEach(song -> {
-            String album = song.getAlbum().trim().toLowerCase();
-            String artist = song.getArtist().trim().toLowerCase();
-            String title = song.getTitle().trim().toLowerCase();
-            if (pattern.matcher(album).matches() || pattern.matcher(artist).matches() || pattern.matcher(title.toString()).matches()) {
+            String album = song.getAlbum() != null ? song.getAlbum().trim().toLowerCase() : "";
+            String artist = song.getAlbum() != null ? song.getArtist().trim().toLowerCase() : "";
+            String title = song.getAlbum() != null ? song.getTitle().trim().toLowerCase() : "";
+            if (pattern.matcher(album).matches() || pattern.matcher(artist).matches() || pattern.matcher(title).matches()) {
                 list.add(song);
             }
         });
