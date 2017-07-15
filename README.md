@@ -1,4 +1,4 @@
-# favorite-songs DEV1
+# favorite-songs
 Webapp - users favourite songs list
 
 A simple demonstration of a fullstack webapp with this tecnologies runing on top of docker engine.
